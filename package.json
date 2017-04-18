@@ -1,0 +1,19 @@
+{
+  "name": "fcc-tictactoe",
+  "version": "1.0.0",
+  "description": "FCC Tic Tac Toe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daveyx/fcc-tictactoe.git"
+  },
+  "author": "www.daveyx.ga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/daveyx/fcc-tictactoe/issues"
+  },
+  "homepage": "https://github.com/daveyx/fcc-tictactoe#readme"
+}
