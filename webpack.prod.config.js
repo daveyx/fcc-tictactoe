@@ -25,7 +25,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'src'),
     filename: 'js/bundle.[hash].js',
-    publicPath: '/fcc-pomodoro'
+    publicPath: '/fcc-tictactoe'
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
