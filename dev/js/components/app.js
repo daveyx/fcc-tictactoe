@@ -3,6 +3,7 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import '../../css/styles.css';
+import TicTacToe from './tictactoe'
 
 export default class App extends Component {
   constructor(props) {
@@ -30,7 +31,7 @@ export default class App extends Component {
           </Row>
           <Row>
             <Col xs={12} sm={8} smOffset={2} md={4} mdOffset={4}>
-              Tic Tac Toe App
+              <TicTacToe />
             </Col>
             </Row>
             <Row>
