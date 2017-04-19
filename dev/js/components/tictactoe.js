@@ -2,49 +2,21 @@
 
 import React, {Component} from 'react';
 import {Row, Col} from 'react-bootstrap';
-import Field from './field'
+import PlayGround from './playGround';
+import PlayerSelection from './playerSelection'
 
 export default class TicTacToe extends Component {
   constructor(props) {
     super();
+    this.state = {
+      userPlayer: ""
+    };
   }
 
   render() {
     return(
       <div className="wrapper text-center">
-        <Row>
-          <Col xs={4}>
-            <Field id="11" />
-          </Col>
-          <Col xs={4}>
-            <Field id="12" />
-          </Col>
-          <Col xs={4}>
-            <Field id="13" />
-          </Col>
-        </Row>
-          <Row>
-            <Col xs={4}>
-              <Field id="21" />
-            </Col>
-            <Col xs={4}>
-              <Field id="22" />
-            </Col>
-            <Col xs={4}>
-              <Field id="23" />
-            </Col>
-          </Row>
-            <Row>
-              <Col xs={4}>
-                <Field id="31" />
-              </Col>
-              <Col xs={4}>
-                <Field id="32" />
-              </Col>
-              <Col xs={4}>
-                <Field id="33" />
-              </Col>
-            </Row>
+        { ! this.state.userPlayer ? <PlayerSelection /> : <PlayGround />}
       </div>
     );
   }
