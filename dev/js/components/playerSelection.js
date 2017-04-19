@@ -8,6 +8,14 @@ export default class PlayerSelection extends Component {
     super();
   }
 
+  selectPlayerX() {
+    this.props.clickHandler("X");
+  }
+
+  selectPlayerO() {
+    this.props.clickHandler("O");
+  }
+
   render() {
     return(
       <div>
@@ -18,10 +26,14 @@ export default class PlayerSelection extends Component {
         </Row>
         <Row className="player-selection">
           <Col xs={2} xsOffset={4}>
-            X
+            <div onClick={this.selectPlayerX.bind(this)}>
+              X
+            </div>
           </Col>
           <Col xs={2}>
-            O
+            <div onClick={this.selectPlayerO.bind(this)}>
+              O
+            </div>
           </Col>
         </Row>
       </div>
