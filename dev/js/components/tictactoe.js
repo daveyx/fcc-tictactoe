@@ -36,7 +36,7 @@ export default class TicTacToe extends Component {
 
   setField(field, player) {
     const nextMove = player === this.state.userPlayer ? this.computerMove : () => {
-      if (hasWon(this.state.gameState, this.state.computerPlayer)) {
+      if (hasWon(this.state.gameState, this.state.computerPlayer) === this.state.computerPlayer) {
         console.log("--->computer won!", this.state.computerPlayer);
         this.setState({winner: this.state.computerPlayer});
       }
@@ -49,11 +49,11 @@ export default class TicTacToe extends Component {
   }
 
   computerMove() {
-    if (hasWon(this.state.gameState, this.state.userPlayer)) {
+    if (hasWon(this.state.gameState, this.state.userPlayer) === this.state.userPlayer) {
       console.log("--->user won!", this.state.userPlayer);
       this.setState({winner: this.state.userPlayer});
     } else {
-      const fieldToSet = getFieldToSet(this.state.gameState, this.state.computerPlayer);
+      const fieldToSet = getFieldToSet(this.state.gameState, this.state.computerPlayer, this.state.userPlayer);
       this.setField(fieldToSet, this.state.computerPlayer);
     }
   }
@@ -70,24 +70,38 @@ export default class TicTacToe extends Component {
   }
 }
 
-function getFieldToSet(gameState, val) {
+function getFieldToSet(gameState, computerPlayer, userPlayer) {
   // win?
   for (let i = 1; i <= 9; i++) {
     const field = "sqr" + i;
     if (gameState[field] === "") {
-      const winGameSate = Object.assign({}, gameState, field: val);
-      if (hasWon(winGameSate, val)) {
+      const winGameSate = Object.assign({}, gameState);
+      winGameSate[field] = computerPlayer;
+      if (hasWon(winGameSate, computerPlayer) === computerPlayer) {
+        console.log("---> winning");
         return field;
       }
     }
   }
 
   // block?
+  for (let i = 1; i <= 9; i++) {
+    const field = "sqr" + i;
+    if (gameState[field] === "") {
+      const winGameSate = Object.assign({}, gameState);
+      winGameSate[field] = userPlayer;
+      if (hasWon(winGameSate, userPlayer) === userPlayer) {
+        console.log("---> blocking");
+        return field;
+      }
+    }
+  }
 
   // do next possible
   for (let i = 1; i <= 9; i++) {
     const field = "sqr" + i;
     if (gameState[field] === "") {
+        console.log("---> next possible");
       return field;
     }
   }
@@ -95,21 +109,27 @@ function getFieldToSet(gameState, val) {
 
 function hasWon(gameState, val) {
   if (gameState.sqr1 === val && gameState.sqr2 === val && gameState.sqr3 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr4 === val && gameState.sqr5 === val && gameState.sqr6 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr7 === val && gameState.sqr8 === val && gameState.sqr9 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr1 === val && gameState.sqr5 === val && gameState.sqr9 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr1 === val && gameState.sqr4 === val && gameState.sqr7 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr2 === val && gameState.sqr5 === val && gameState.sqr8 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr3 === val && gameState.sqr6 === val && gameState.sqr9 === val) {
-    return true;
+    return val;
   } else if (gameState.sqr3 === val && gameState.sqr5 === val && gameState.sqr7 === val) {
-    return true;
+    return val;
   }
-  return false;
+  const isDraw = Object.entries(gameState).reduce((prev, x) => {
+    return prev && x[1] !== "";
+  }, true);
+  if (isDraw) {
+    return "XO";
+  }
+  return null;
 }
