@@ -10,8 +10,8 @@ export default class Field extends Component {
 
   render() {
     return(
-      <div>
-        {this.props.id}
+      <div className={`field field-${this.props.id}`}>
+        
       </div>
     );
   }

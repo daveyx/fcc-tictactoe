@@ -11,7 +11,7 @@ export default class PlayGround extends Component {
 
   render() {
     return(
-      <div className="wrapper text-center">
+      <div className="playground">
         <Row>
           <Col xs={4}>
             <Field id="11" />

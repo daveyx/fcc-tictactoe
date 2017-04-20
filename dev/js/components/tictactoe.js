@@ -9,7 +9,7 @@ export default class TicTacToe extends Component {
   constructor(props) {
     super();
     this.state = {
-      userPlayer: ""
+      userPlayer: "X"
     };
     this.selectPlayer = this.selectPlayer.bind(this);
   }
@@ -20,7 +20,7 @@ export default class TicTacToe extends Component {
 
   render() {
     return(
-      <div className="wrapper text-center">
+      <div className="text-center">
         { ! this.state.userPlayer ? <PlayerSelection clickHandler={this.selectPlayer} /> : <PlayGround />}
       </div>
     );

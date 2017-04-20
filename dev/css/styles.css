@@ -4,10 +4,15 @@ h1 {
   line-height: 0.8 !important;
 }
 
-/*div[class^="col-"] {
+.playground div[class^="col-"] {
   border: 1px solid black;
-}*/
+}
 
-.player-selection {
+.player-selection, .playground {
   font-size: 50px;
+}
+
+.field {
+  min-height: 100px;
+  padding-top: 15px;
 }
