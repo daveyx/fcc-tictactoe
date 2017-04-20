@@ -12,16 +12,20 @@ export default class TicTacToe extends Component {
       userPlayer: "X"
     };
     this.selectPlayer = this.selectPlayer.bind(this);
+    this.setField = this.setField.bind(this);
   }
 
   selectPlayer(val) {
     this.setState({userPlayer: val});
   }
 
+  setField(val) {
+  }
+
   render() {
     return(
       <div className="text-center">
-        { ! this.state.userPlayer ? <PlayerSelection clickHandler={this.selectPlayer} /> : <PlayGround />}
+        { ! this.state.userPlayer ? <PlayerSelection clickHandler={this.selectPlayer} /> : <PlayGround clickHandler={this.setField} />}
       </div>
     );
   }

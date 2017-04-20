@@ -14,35 +14,35 @@ export default class PlayGround extends Component {
       <div className="playground">
         <Row>
           <Col xs={4}>
-            <Field id="11" />
+            <Field id="11" clickHandler={this.props.clickHandler} />
           </Col>
           <Col xs={4}>
-            <Field id="12" />
+            <Field id="12" clickHandler={this.props.clickHandler} />
           </Col>
           <Col xs={4}>
-            <Field id="13" />
+            <Field id="13" clickHandler={this.props.clickHandler} />
           </Col>
         </Row>
           <Row>
             <Col xs={4}>
-              <Field id="21" />
+              <Field id="21" clickHandler={this.props.clickHandler} />
             </Col>
             <Col xs={4}>
-              <Field id="22" />
+              <Field id="22" clickHandler={this.props.clickHandler} />
             </Col>
             <Col xs={4}>
-              <Field id="23" />
+              <Field id="23" clickHandler={this.props.clickHandler} />
             </Col>
           </Row>
             <Row>
               <Col xs={4}>
-                <Field id="31" />
+                <Field id="31" clickHandler={this.props.clickHandler} />
               </Col>
               <Col xs={4}>
-                <Field id="32" />
+                <Field id="32" clickHandler={this.props.clickHandler} />
               </Col>
               <Col xs={4}>
-                <Field id="33" />
+                <Field id="33" clickHandler={this.props.clickHandler} />
               </Col>
             </Row>
       </div>
