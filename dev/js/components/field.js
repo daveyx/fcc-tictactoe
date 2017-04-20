@@ -9,12 +9,13 @@ export default class Field extends Component {
   }
 
   setField() {
-    this.props.clickHandler(this.props.id);
+    this.props.clickHandler(this.props.fieldState[0]);
   }
 
   render() {
     return(
-      <div className={`field field-${this.props.id}`} onClick={this.setField.bind(this)}>
+      <div className={`field ${this.props.fieldState}`} onClick={this.setField.bind(this)}>
+        {this.props.fieldState[1]}
       </div>
     );
   }

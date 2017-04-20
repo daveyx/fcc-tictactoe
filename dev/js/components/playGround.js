@@ -10,39 +10,40 @@ export default class PlayGround extends Component {
   }
 
   render() {
+    const gameState = Object.entries(this.props.gameState);
     return(
       <div className="playground">
         <Row>
           <Col xs={4}>
-            <Field id="11" clickHandler={this.props.clickHandler} />
+            <Field fieldState={gameState[0]} clickHandler={this.props.clickHandler} />
           </Col>
           <Col xs={4}>
-            <Field id="12" clickHandler={this.props.clickHandler} />
+            <Field fieldState={gameState[1]} clickHandler={this.props.clickHandler} />
           </Col>
           <Col xs={4}>
-            <Field id="13" clickHandler={this.props.clickHandler} />
+            <Field fieldState={gameState[2]} clickHandler={this.props.clickHandler} />
           </Col>
         </Row>
           <Row>
             <Col xs={4}>
-              <Field id="21" clickHandler={this.props.clickHandler} />
+              <Field fieldState={gameState[3]} clickHandler={this.props.clickHandler} />
             </Col>
             <Col xs={4}>
-              <Field id="22" clickHandler={this.props.clickHandler} />
+              <Field fieldState={gameState[4]} clickHandler={this.props.clickHandler} />
             </Col>
             <Col xs={4}>
-              <Field id="23" clickHandler={this.props.clickHandler} />
+              <Field fieldState={gameState[5]} clickHandler={this.props.clickHandler} />
             </Col>
           </Row>
             <Row>
               <Col xs={4}>
-                <Field id="31" clickHandler={this.props.clickHandler} />
+                <Field fieldState={gameState[6]} clickHandler={this.props.clickHandler} />
               </Col>
               <Col xs={4}>
-                <Field id="32" clickHandler={this.props.clickHandler} />
+                <Field fieldState={gameState[7]} clickHandler={this.props.clickHandler} />
               </Col>
               <Col xs={4}>
-                <Field id="33" clickHandler={this.props.clickHandler} />
+                <Field fieldState={gameState[8]} clickHandler={this.props.clickHandler} />
               </Col>
             </Row>
       </div>
