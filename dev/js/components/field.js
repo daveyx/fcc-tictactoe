@@ -10,7 +10,7 @@ export default class Field extends Component {
 
   setField() {
     if ( ! this.props.fieldState[1]) {
-      this.props.clickHandler(this.props.fieldState[0]);
+      this.props.clickHandler(this.props.fieldState[0], this.props.player);
     }
   }
 

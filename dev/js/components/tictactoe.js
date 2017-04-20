@@ -21,22 +21,35 @@ export default class TicTacToe extends Component {
     super();
     this.state = {
       userPlayer: "X",
+      computerPlayer: "O",
+      winner: "",
       gameState: initialGameState
     };
     this.selectPlayer = this.selectPlayer.bind(this);
     this.setField = this.setField.bind(this);
+    this.checkWinner = this.checkWinner.bind(this);
+    this.computerMove = this.computerMove.bind(this);
   }
 
   selectPlayer(val) {
     this.setState({userPlayer: val});
   }
 
-  setField(val) {
+  setField(field, player) {
+    const nextMove = player === this.state.userPlayer ? this.computerMove : null;
     const newGameState = Object.assign({}, this.state.gameState);
-    newGameState[val] = this.state.userPlayer;
+    newGameState[field] = player;
     this.setState({
       gameState: newGameState
-    });
+    }, nextMove);
+  }
+
+  computerMove() {
+    if (hasWon(this.state.gameState, this.state.userPlayer)) {
+      console.log("--->user won!", this.state.userPlayer);
+    } else {
+
+    }
   }
 
   render() {
@@ -44,9 +57,31 @@ export default class TicTacToe extends Component {
       <div className="text-center">
         { ! this.state.userPlayer
            ? <PlayerSelection clickHandler={this.selectPlayer} />
-           : <PlayGround clickHandler={this.setField} gameState={this.state.gameState} />
+           : <PlayGround clickHandler={this.setField} gameState={this.state.gameState} player={this.state.userPlayer} />
         }
       </div>
     );
   }
+}
+
+function hasWon(gameState, val) {
+  console.log(gameState, val);
+  if (gameState.sqr1 === val && gameState.sqr2 === val && gameState.sqr3 === val) {
+    return true;
+  } else if (gameState.sqr4 === val && gameState.sqr5 === val && gameState.sqr6 === val) {
+    return true;
+  } else if (gameState.sqr7 === val && gameState.sqr8 === val && gameState.sqr9 === val) {
+    return true;
+  } else if (gameState.sqr1 === val && gameState.sqr5 === val && gameState.sqr9 === val) {
+    return true;
+  } else if (gameState.sqr1 === val && gameState.sqr4 === val && gameState.sqr7 === val) {
+    return true;
+  } else if (gameState.sqr2 === val && gameState.sqr5 === val && gameState.sqr8 === val) {
+    return true;
+  } else if (gameState.sqr3 === val && gameState.sqr6 === val && gameState.sqr9 === val) {
+    return true;
+  } else if (gameState.sqr3 === val && gameState.sqr5 === val && gameState.sqr7 === val) {
+    return true;
+  }
+  return false;
 }
