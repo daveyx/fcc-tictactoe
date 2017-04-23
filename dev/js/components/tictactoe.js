@@ -1,7 +1,7 @@
 'use strict';
 
 import React, {Component} from 'react';
-import {Row, Col} from 'react-bootstrap';
+import {Row, Col, Modal, Button} from 'react-bootstrap';
 import PlayGround from './playGround';
 import PlayerSelection from './playerSelection'
 
@@ -23,11 +23,13 @@ export default class TicTacToe extends Component {
       userPlayer: "X",
       computerPlayer: "O",
       winner: "",
-      gameState: initialGameState
+      gameState: initialGameState,
+      showModal: true
     };
     this.selectPlayer = this.selectPlayer.bind(this);
     this.setField = this.setField.bind(this);
     this.computerMove = this.computerMove.bind(this);
+    this.close = this.close.bind(this);
   }
 
   selectPlayer(val) {
@@ -58,9 +60,24 @@ export default class TicTacToe extends Component {
     }
   }
 
+  close() {
+    this.setState({ showModal: false });
+  }
+
   render() {
     return(
       <div className="text-center">
+        <Modal show={this.state.showModal} onHide={this.close}>
+          <Modal.Header closeButton>
+            <Modal.Title>Game end</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            Winner is: {this.state.winner}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.close}>Close</Button>
+          </Modal.Footer>
+        </Modal>
         { ! this.state.userPlayer
            ? <PlayerSelection clickHandler={this.selectPlayer} />
            : <PlayGround clickHandler={this.setField} gameState={this.state.gameState} player={this.state.userPlayer} />
