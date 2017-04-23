@@ -33,16 +33,16 @@ export default class App extends Component {
             <Col xs={12} sm={8} smOffset={2} md={4} mdOffset={4}>
               <TicTacToe />
             </Col>
-            </Row>
-            <Row>
-              <Col xs={12}>
-                <hr />
-                <footer className="text-center">
-                  Sourcecode at github.com: <a href="https://github.com/daveyx/fcc-tictactoe" title="Sourcecode" target="_blank">click</a><br />
-                  Demo at github.com: <a href="https://daveyx.github.io/fcc-tictactoe/" title="Demo" target="_blank">click</a>
-                </footer>
-              </Col>
-            </Row>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <hr />
+              <footer className="text-center">
+                Sourcecode at github.com: <a href="https://github.com/daveyx/fcc-tictactoe" title="Sourcecode" target="_blank">click</a><br />
+                Demo at github.com: <a href="https://daveyx.github.io/fcc-tictactoe/" title="Demo" target="_blank">click</a>
+              </footer>
+            </Col>
+          </Row>
         </Grid>
       </div>
     );
