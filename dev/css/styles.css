@@ -4,6 +4,10 @@ h1 {
   line-height: 0.8 !important;
 }
 
+.wrapper {
+  padding-top: 20px;
+}
+
 .playground div[class^="col-"] {
   border: 1px solid black;
 }
