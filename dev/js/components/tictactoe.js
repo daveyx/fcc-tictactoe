@@ -23,10 +23,11 @@ export default class TicTacToe extends Component {
   constructor(props) {
     super();
     this.state = {
-      userPlayer: "X",
-      computerPlayer: "O",
+      userPlayer: "",
+      computerPlayer: "",
       gameState: initialGameState,
-      showModal: false
+      showModal: false,
+      gameFinished: false
     };
     this.selectPlayer = this.selectPlayer.bind(this);
     this.setField = this.setField.bind(this);
@@ -36,7 +37,7 @@ export default class TicTacToe extends Component {
   }
 
   componentWillUpdate(nextProps, nextState) {
-    if ( ! this.state.winner) {
+    if (this.state.userPlayer !== "" && this.state.computerPlayer !== "" && ! this.state.gameFinished) {
       const computerWinner = hasWon(nextState.gameState, nextState.computerPlayer);
       if (computerWinner === nextState.computerPlayer) {
         console.log("--->computer won!", nextState.computerPlayer);
@@ -65,13 +66,17 @@ export default class TicTacToe extends Component {
       }
     }
     this.setState({
-      winner: winner,
+      gameFinished: true,
       showModal: true
     });
   }
 
   selectPlayer(val) {
-    this.setState({userPlayer: val});
+    const computerPlayer = val === "X" ? "O" : "X";
+    this.setState({
+      userPlayer: val,
+      computerPlayer: computerPlayer
+    });
   }
 
   setField(field, player) {
@@ -89,7 +94,14 @@ export default class TicTacToe extends Component {
   }
 
   closeModal() {
-    this.setState({ showModal: false });
+    this.setState({
+      gameFinished: false,
+      userPlayer: "",
+      computerPlayer: "",
+      gameState: initialGameState,
+      showModal: false
+    });
+    winnerMessage = "";
   }
 
   render() {
