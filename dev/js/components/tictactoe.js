@@ -20,10 +20,17 @@ export default class TicTacToe extends Component {
   constructor(props) {
     super();
     this.state = {
+<<<<<<< Updated upstream
       userPlayer: "X",
       computerPlayer: "O",
       winner: "",
       gameState: initialGameState
+=======
+      userPlayer: "",
+      computerPlayer: "",
+      gameState: initialGameState,
+      showModal: false
+>>>>>>> Stashed changes
     };
     this.selectPlayer = this.selectPlayer.bind(this);
     this.setField = this.setField.bind(this);
@@ -49,6 +56,7 @@ export default class TicTacToe extends Component {
   }
 
   computerMove() {
+<<<<<<< Updated upstream
     if (hasWon(this.state.gameState, this.state.userPlayer) === this.state.userPlayer) {
       console.log("--->user won!", this.state.userPlayer);
       this.setState({winner: this.state.userPlayer});
@@ -56,6 +64,19 @@ export default class TicTacToe extends Component {
       const fieldToSet = getFieldToSet(this.state.gameState, this.state.computerPlayer, this.state.userPlayer);
       this.setField(fieldToSet, this.state.computerPlayer);
     }
+=======
+    const fieldToSet = getFieldToSet(this.state.gameState, this.state.computerPlayer, this.state.userPlayer);
+    this.setField(fieldToSet, this.state.computerPlayer);
+  }
+
+  closeModal() {
+    this.setState({
+      showModal: false,
+      userPlayer: "",
+      computerPlayer: "",
+      gameState: initialGameState,
+    });
+>>>>>>> Stashed changes
   }
 
   render() {
