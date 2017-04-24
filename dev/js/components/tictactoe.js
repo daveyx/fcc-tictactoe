@@ -16,20 +16,58 @@ const initialGameState = {
   sqr8: "",
   sqr9: ""
 }
+
+let winnerMessage = "";
+
 export default class TicTacToe extends Component {
   constructor(props) {
     super();
     this.state = {
       userPlayer: "X",
       computerPlayer: "O",
-      winner: "",
       gameState: initialGameState,
-      showModal: true
+      showModal: false
     };
     this.selectPlayer = this.selectPlayer.bind(this);
     this.setField = this.setField.bind(this);
     this.computerMove = this.computerMove.bind(this);
-    this.close = this.close.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.finishGame = this.finishGame.bind(this);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if ( ! this.state.winner) {
+      const computerWinner = hasWon(nextState.gameState, nextState.computerPlayer);
+      if (computerWinner === nextState.computerPlayer) {
+        console.log("--->computer won!", nextState.computerPlayer);
+        this.finishGame(nextState.computerPlayer);
+      } else if (computerWinner === "XO") {
+        console.log("--->DRAW!");
+        this.finishGame("XO");
+      }
+
+      const userWinner = hasWon(nextState.gameState, nextState.userPlayer);
+      if (userWinner === nextState.userPlayer) {
+        console.log("--->user won!", nextState.userPlayer);
+        this.finishGame(nextState.userPlayer);
+      }
+    }
+  }
+
+  finishGame(winner) {
+    if (winner === "XO") {
+      winnerMessage = "Draw!";
+    } else {
+      if (winner === this.state.userPlayer) {
+        winnerMessage = "You won!";
+      } else {
+        winnerMessage = "You lost!";
+      }
+    }
+    this.setState({
+      winner: winner,
+      showModal: true
+    });
   }
 
   selectPlayer(val) {
@@ -37,12 +75,7 @@ export default class TicTacToe extends Component {
   }
 
   setField(field, player) {
-    const nextMove = player === this.state.userPlayer ? this.computerMove : () => {
-      if (hasWon(this.state.gameState, this.state.computerPlayer) === this.state.computerPlayer) {
-        console.log("--->computer won!", this.state.computerPlayer);
-        this.setState({winner: this.state.computerPlayer});
-      }
-    };
+    const nextMove = player === this.state.userPlayer ? this.computerMove : () => null;
     const newGameState = Object.assign({}, this.state.gameState);
     newGameState[field] = player;
     this.setState({
@@ -51,31 +84,26 @@ export default class TicTacToe extends Component {
   }
 
   computerMove() {
-    if (hasWon(this.state.gameState, this.state.userPlayer) === this.state.userPlayer) {
-      console.log("--->user won!", this.state.userPlayer);
-      this.setState({winner: this.state.userPlayer});
-    } else {
-      const fieldToSet = getFieldToSet(this.state.gameState, this.state.computerPlayer, this.state.userPlayer);
-      this.setField(fieldToSet, this.state.computerPlayer);
-    }
+    const fieldToSet = getFieldToSet(this.state.gameState, this.state.computerPlayer, this.state.userPlayer);
+    this.setField(fieldToSet, this.state.computerPlayer);
   }
 
-  close() {
+  closeModal() {
     this.setState({ showModal: false });
   }
 
   render() {
     return(
       <div className="text-center">
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal show={this.state.showModal} onHide={this.closeModal}>
           <Modal.Header closeButton>
             <Modal.Title>Game end</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Winner is: {this.state.winner}
+            {winnerMessage}
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={this.closeModal}>Close</Button>
           </Modal.Footer>
         </Modal>
         { ! this.state.userPlayer
@@ -95,7 +123,6 @@ function getFieldToSet(gameState, computerPlayer, userPlayer) {
       const winGameSate = Object.assign({}, gameState);
       winGameSate[field] = computerPlayer;
       if (hasWon(winGameSate, computerPlayer) === computerPlayer) {
-        console.log("---> winning");
         return field;
       }
     }
@@ -108,7 +135,6 @@ function getFieldToSet(gameState, computerPlayer, userPlayer) {
       const winGameSate = Object.assign({}, gameState);
       winGameSate[field] = userPlayer;
       if (hasWon(winGameSate, userPlayer) === userPlayer) {
-        console.log("---> blocking");
         return field;
       }
     }
@@ -118,7 +144,6 @@ function getFieldToSet(gameState, computerPlayer, userPlayer) {
   for (let i = 1; i <= 9; i++) {
     const field = "sqr" + i;
     if (gameState[field] === "") {
-        console.log("---> next possible");
       return field;
     }
   }
