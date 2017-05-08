@@ -13,6 +13,7 @@
   "devDependencies": {
     "babel-core": "^6.24.1",
     "babel-loader": "^6.4.1",
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.0",
@@ -30,8 +31,6 @@
     "type": "git",
     "url": "git+https://github.com/daveyx/fcc-tictactoe.git"
   },
-  "author": "www.daveyx.ga",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/daveyx/fcc-tictactoe/issues"
   },
