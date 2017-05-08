@@ -6,6 +6,8 @@ import {Row, Col} from 'react-bootstrap';
 export default class PlayerSelection extends Component {
   constructor(props) {
     super();
+    this.selectPlayerX = this.selectPlayerX.bind(this);
+    this.selectPlayerY = this.selectPlayerY.bind(this);
   }
 
   selectPlayerX() {
@@ -26,12 +28,12 @@ export default class PlayerSelection extends Component {
         </Row>
         <Row className="player-selection">
           <Col xs={2} xsOffset={4}>
-            <div onClick={this.selectPlayerX.bind(this)}>
+            <div onClick={() => this.selectPlayerX()}>
               X
             </div>
           </Col>
           <Col xs={2}>
-            <div onClick={this.selectPlayerO.bind(this)}>
+            <div onClick={() => this.selectPlayerY()}>
               O
             </div>
           </Col>
