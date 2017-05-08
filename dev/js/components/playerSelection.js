@@ -7,7 +7,7 @@ export default class PlayerSelection extends Component {
   constructor(props) {
     super();
     this.selectPlayerX = this.selectPlayerX.bind(this);
-    this.selectPlayerY = this.selectPlayerY.bind(this);
+    this.selectPlayerO = this.selectPlayerO.bind(this);
   }
 
   selectPlayerX() {
