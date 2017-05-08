@@ -10,7 +10,12 @@ export default class PlayGround extends Component {
   }
 
   render() {
-    const gameState = Object.entries(this.props.gameState);
+    // const gameState = Object.entries(this.props.gameState); not working on ie11
+    let gameState = [];
+    for (var key in this.props.gameState) {
+      gameState.push([key, this.props.gameState[key]]);
+    }
+
     return(
       <div className="playground">
         <Row>
