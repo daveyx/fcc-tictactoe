@@ -26,12 +26,12 @@ export default class PlayerSelection extends Component {
         </Row>
         <Row className="player-selection">
           <Col xs={2} xsOffset={4}>
-            <div onClick={this.selectPlayerX.bind(this)}>
+            <div onClick="{this.selectPlayerX.bind(this)}">
               X
             </div>
           </Col>
           <Col xs={2}>
-            <div onClick={this.selectPlayerO.bind(this)}>
+            <div onClick="{this.selectPlayerO.bind(this)}">
               O
             </div>
           </Col>
