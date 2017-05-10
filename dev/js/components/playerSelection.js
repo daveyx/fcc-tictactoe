@@ -33,7 +33,7 @@ export default class PlayerSelection extends Component {
             </div>
           </Col>
           <Col xs={2}>
-            <div onClick={() => this.selectPlayerY()}>
+            <div onClick={() => this.selectPlayerO()}>
               O
             </div>
           </Col>
