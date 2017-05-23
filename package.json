@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack",
     "start": "webpack-dev-server --host 0.0.0.0",
-    "lint": "eslint src",
-    "lint-fix": "eslint src --fix"
+    "lint": "./node_modules/.bin/eslint 'dev/js'",
+    "lint-fix": "./node_modules/.bin/eslint --fix 'dev/js'"
   },
   "author": "www.daveyx.ga",
   "license": "ISC",
