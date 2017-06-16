@@ -6,16 +6,5 @@
                            |___/      
     -----------------------------------
 
-# tic tac toe game with react
-https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-game
-
-### live demo
-https://daveyx.github.io/fcc-tictactoe
-
-### install
-1. git clone https://github.com/daveyx/fcc-tictactoe
-2. cd fcc-tictactoe
-3. npm install
-4. npm start
-5. call http://localhost:3000 in your browser
-6. enjoy...
+    # END OF LIFE
+    This repo is not used anymore and has moved to https://github.com/daveyx/freecodecamp/tree/master/src/frontend/09_tictactoe
